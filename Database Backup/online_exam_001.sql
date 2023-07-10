@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 18, 2020 at 09:47 PM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Apr 20, 2023 at 07:29 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -41,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`a_id`, `name`, `password`) VALUES
-('U1000', 'Administrator', 'xyz123');
+('U1000', 'Administrator', 'xyz12345');
 
 -- --------------------------------------------------------
 
@@ -173,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 INSERT INTO `profile` (`st_id`, `password`, `type`, `email`) VALUES
 ('ST1001', '123xyz', 'STUDENT', 'xyz123@gmail.com'),
 ('ST1003', 'pass', 'STUDENT', 'xyz@email.com'),
-('U1000', 'xyz123', 'ADMIN', 'soumya.shome99@gmail.com');
+('U1000', 'xyz12345', 'ADMIN', 'soumya.shome99@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -196,8 +195,8 @@ CREATE TABLE IF NOT EXISTS `p_off` (
 --
 
 INSERT INTO `p_off` (`p_id`, `c_id`, `file`, `tot_marks`, `time`) VALUES
-('P1002B', 'C1002', 'P1002B', '15', '30'),
-('P1003A', 'C1003', 'P1003A', '50', '120');
+('P1002B', 'C1002', 'P1002B.pdf', '15', '30'),
+('P1003A', 'C1003', 'P1003A.pdf', '50', '120');
 
 -- --------------------------------------------------------
 
