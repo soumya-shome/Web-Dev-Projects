@@ -1,5 +1,6 @@
 <?php
-require "header bar2.php";?>
+require "header bar2.php";
+?>
 <div class="container-fluid">
 <?php
 	$r=mysqli_query($con,"SELECT * FROM `student` WHERE `s_id`='".$_SESSION['id']."'");

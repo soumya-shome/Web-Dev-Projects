@@ -1,5 +1,35 @@
 <?php
-	require("connectDB.php");
+require("connectDB.php");
+?>
+<?php
+	if(isset($_REQUEST["b1"])){
+		$login=$_REQUEST["t1"];
+		$pass=$_REQUEST["p1"];
+		$r=mysqli_query($con,"SELECT * FROM `profile` WHERE `st_id`='".$login."'");
+		if($count=mysqli_num_rows($r)>0)
+		{
+			$row=mysqli_fetch_array($r);	
+			if($pass==$row[1]){
+				if($row[2]=="STUDENT")
+				{session_start();$r2=mysqli_fetch_array(mysqli_query($con,"SELECT student.f_name FROM student,profile WHERE student.s_id=profile.st_id AND profile.st_id='".$login."'"));
+					$_SESSION['id']=$login;
+					$_SESSION['name']=$r2[0];
+					header("Refresh:0,URL=stuHome.php");	
+				}
+				else
+				{session_start();$_SESSION['id']=$row[2];
+				header("Refresh:0,URL=adminHome.php");
+				}
+			}
+			else{
+				echo "Wrong Password";
+			}
+		}
+		else
+		{
+			echo "User Not Found";
+		}
+	}
 ?>
 <!doctype html>
 <html>
@@ -45,40 +75,7 @@
 
 <div class="row" style="padding-left: 8px">
 		<div class="col-md-8">
-<?php
-	if(isset($_REQUEST["b1"])){
-		$login=$_REQUEST["t1"];
-		$pass=$_REQUEST["p1"];
-		$r=mysqli_query($con,"SELECT * FROM `profile` WHERE `st_id`='".$login."'");
-		if($count=mysqli_num_rows($r)>0)
-		{
-			$row=mysqli_fetch_array($r);	
-			if($pass==$row[1]){
-				if($row[2]=="STUDENT")
-				{
-					session_start();
-					$r2=mysqli_fetch_array(mysqli_query($con,"SELECT student.f_name FROM student,profile WHERE student.s_id=profile.st_id AND profile.st_id='".$login."'"));
-					$_SESSION['id']=$login;
-					$_SESSION['name']=$r2[0];
-					header("Refresh:0,URL=stuHome.php");	
-				}
-				else
-				{
-					session_start();
-					$_SESSION['id']=$row[2];
-					header("Refresh:0,URL=adminHome.php");
-				}
-			}
-			else{
-				echo "Wrong Password";
-			}
-		}
-		else
-		{
-			echo "User Not Found";
-		}
-	}
-?>
+
 			<h1 class="page-header">Company Name</h1>
 				<h1 class=" text-danger">Bootstrap</h1>
 					<p class="text-justify text-capitalize">Build responsive, mobile-first projects on the web with the world’s most popular front-end component library. 
