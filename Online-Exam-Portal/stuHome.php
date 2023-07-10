@@ -23,32 +23,10 @@
 <div class="col-md-12"><img src="Images/carousel-banner-2.jpg" alt="" width="1000"></div>
 </div>
 
-<nav class="navbar navbar-inverse">
-<div class="container-fluid">
-<div class="navbar-header">
-<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mySHome">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</button>
-<a class="navbar-brand" href="#">Examco.in</a></div>
-<div class="collapse navbar-collapse" id="mySHome"> 
-<ul class="nav navbar-nav">
-<li class="active"><a href="stuHome.php">Home</a></li>
-<li class="#"><a href="OE.php">Online Exam</a></li>
-<li class="#"><a href="applyE.php">Apply for Exam</a></li>
-<li class="#"><a href="admit.php">Admit Card</a></li>
-<li class="#"><a href="stuResult.php">Result</a></li>
-<li class="#"><a href="#">Display Profile</a></li>
-</ul>
-	<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Welcome  <?php echo $_SESSION['id'] ?></a></li>
-			</ul>
-<ul class="nav navbar-nav navbar-right">
-<li><a href="logOut.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</a></li>
-</ul>
-</div>
-</div>
-</nav>
-</body>
+<?php 
+require "header bar2.php";
+?>
+	<div class="nav-divider">
+	</div>
+	</body>
 </html>

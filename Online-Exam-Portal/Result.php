@@ -23,41 +23,10 @@
 <div class="col-md-12"><img src="Images/carousel-banner-2.jpg" alt="" width="1000"></div>
 </div>
 
-<nav class="navbar navbar-inverse">
+<?php
+require "header bar.php";
+?>
 <div class="container-fluid">
-<div class="navbar-header">
-<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myAHome">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</button>
-<a class="navbar-brand" href="#">Examco.in</a></div>
-<div class="collapse navbar-collapse" id="myAHome"> 
-			<ul class="nav navbar-nav">
-				<li class="#"><a href="adminHome.php">Home</a></li>
-				<li class="#"><a href="sche.php">Schedule Exam</a></li>
-				<li class="active"><a href="Result.php">Result</a></li>
-				<li class="#"><a href="createP.php">Create Question Set</a></li>
-				<li class="#"><a href="viewCourse2.php">Add Questions</a></li>
-				<li class="#"><a href="viewCourse.php">View Question Paper</a></li>
-				<li class="#"><a href="#">Students</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right ">
-				<li><a href="#">Welcome  <?php echo $_SESSION['id'] ?></a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logOut.php"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
-			</ul>
-		</div>
-<div class="container-fluid">
-<div id="myslide" class="carousel slide" data-ride="carousel">
-
-
-</div>
-</div>
-</div>
-</nav>
-<div>
 <?php
 	$q="SELECT * FROM `result`" ;
 	$result=mysqli_query($con,$q);
@@ -68,7 +37,7 @@ if($count!=0)
 <h1> EXAM REPORT</h1>
 <table border = '1'>
 <tr>
-<th>Student name</th>
+<th>Student ID</th>
 <th>Exam Code</th>
 <th>Grade</th>
 <th>Percentage</th>
@@ -78,39 +47,31 @@ if($count!=0)
 	<th>No of Correct Answers</th>
 	<th>No of Wrong Answers</th>
 	<th>Negative Marks</th>
+	<th>Marks</th>
 </tr>
 <?php
 while($row=mysqli_fetch_array($result))
 {
-$eCode=$row[0];
-$sId=$row[1];
-$nQ=$row[2];
-$nWA=$row[3];
-$nCA=$row[4];
-$nM=$row[5];
-$j=$row[6];
-$pC=$row[7];
-$grade=$row[8];
-$status=$row[9];
 ?>
 <tr>
-<td><?php echo $sId?></td>
-<td><?php echo $eCode?></td>
-<td><?php echo $grade?></td>
-<td><?php echo $pC?></td>
-<td><?php echo $status?></td>
-<td><?php echo $nQ?></td>
-<td><?php echo $nWA?></td>
-<td><?php echo $nCA?></td>
-<td><?php echo $nM?></td>
-<td><?php echo $j?></td>
+<td><?php echo $row[1]?></td>
+<td><?php echo $row[0]?></td>
+<td><?php echo $row[8]?></td>
+<td><?php echo $row[9]?></td>
+<td><?php echo $row[10]?></td>
+<td><?php echo $row[2]?></td>
+<td><?php echo $row[3]?></td>
+<td><?php echo $row[5]?></td>
+<td><?php echo $row[4]?></td>
+<td><?php echo $row[7]?></td>
+<td><?php echo $row[6]?></td>
 	</tr>
 <?php
 }
 }
 else
 {
-	echo "Empty Table";
+	echo "<h2>No Result Available</h2>";
 }
 ?>
 </table>

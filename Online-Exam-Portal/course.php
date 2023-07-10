@@ -24,48 +24,24 @@
 	<div class="col-md-12"><img src="Images/carousel-banner-2.jpg" alt="" width="1000"></div>
 </div>
 
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myAHome">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Examco.in</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myAHome"> 
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="adminHome.php">Home</a></li>
-				<li class="#"><a href="sche.php">Schedule Exam</a></li>
-				<li class="#"><a href="e_details.php">Exam</a></li>
-				<li class="#"><a href="Result.php">Result</a></li>
-				<li class="#"><a href="createP.php">Create Question Set</a></li>
-				<li class="#"><a href="viewCourse2.php">Add Questions</a></li>
-				<li class="#"><a href="viewCourse.php">View Question Paper</a></li>
-				
-				<li class="#"><a href="#">Students</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right ">
-				<li><a href="#">Welcome  <?php echo $_SESSION['id'] ?></a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logOut.php"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
-			</ul>
-		</div>
-		<div class="container-fluid">
-			<div id="myslide" class="carousel slide" data-ride="carousel"></div>
-		</div>
-	</div>
-</nav>
+<?php
+require("header bar.php");
+?>
 	
-<div  class="container-fluid">
-	<form method="post" action="c2.php">
-		<input type="radio" value="View" name="r1">View Courses<br>
-		<input type="radio" value="Add" name="r1">Add Course<br>
-		<input type="radio" value="Edit" name="r1">Edit Course<br>
-	<input type="submit" value="Submit">
-	</form>
-</div>	
+<?php 
+	$r1=mysqli_query($con,"SELECT * FROM `course`");
+	$c1=mysqli_num_rows($r1);
+	$cid="C".(1001+$c1);
+?>
+	
+	
+<form action="regCourse.php" enctype="multipart/form-data" method="post">
+	Course ID: <input type="text" name="t0" value="<?php echo $cid ?>" readonly ><br>
+	Course Name:<input type="text" name="t1" placeholder="Course Name"><br><br>
+	Duration: <input type="number" name="t2" min='0' max='12' value='0'>Months<input type="number" name="t3" min='0' max='24' value='0'>Hrs<br><br>Description: <div>
+	<textarea id="text" cols="40" rows="4" name="t4" placeholder="Say something..."></textarea></div>
+	<input id="file" name="t5" type="file"><br>
+	<input id="Submit" name="b1" type="submit" value="Submit">
+</form>
 </body>
 </html>
