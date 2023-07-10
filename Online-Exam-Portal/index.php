@@ -18,7 +18,7 @@ header("Refresh:0,URL=stuHome.php");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
+	
 <script>
 	function showpass(a){
 		if(a==1){

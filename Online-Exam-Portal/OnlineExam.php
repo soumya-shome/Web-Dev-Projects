@@ -1,32 +1,9 @@
-<!doctype html>
-<html>
-	<?php
-	require("connectDB.php");
-	session_start();
-	?>
-<head>
-<title>Home</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<style>
-.navbar{
-	border-radius:1;
-	background-color: #03033C;
-	}		
-</style>
-	
-	<script>
-		
 <?php
-	$result2=mysqli_query($con,"SELECT * FROM `paper` WHERE `P_CODE`= '".$_SESSION['op']."'");
-	$row2=mysqli_fetch_array($result2);
-	$time=$row2[4];
-	$ct=date("i")+$time;
-	$s=date("s");
-	?>	
+require "header3.php";
+$result1=mysqli_query($con,"SELECT * FROM `paper_set` WHERE `p_id`= '".$_SESSION['op']."'");
+$row1=mysqli_fetch_array($result1);
+?>
+<script>	
 	var elem =document.documentElement;
 	
 	function openFullscreen() {
@@ -104,35 +81,22 @@
 		document.getElementById('exam').style.display = "block";
 	}
 </script>
-
-	
-	
-	
-</head>
-	
-<body>
-<div class="row">
-<div class="col-md-12"><img src="Images/carousel-banner-2.jpg" alt="" width="1000"></div>
-</div>
-
-<?php
-require "header3.php";
-$result1=mysqli_query($con,"SELECT * FROM `paper_set` WHERE `p_id`= '".$_SESSION['op']."'");
-$row1=mysqli_fetch_array($result1);
-?>
-<div id="exam" style="display:none;">
-	Time Left: <p id="demo"></p> 
-	<?php
-	$paper=$_SESSION['op'];
-	$result=mysqli_query($con,"SELECT * FROM `question` WHERE `p_id`= '".$paper."'");
-	$_SESSION['q1']=1;
-?>
 <div>
 	Rules: ...
 	
 	<button onClick="di()" id="btnTest" >Start Exam</button>
 
 </div>
+
+
+
+	<div id="exam" style="display:none;">
+	Time Left: <p id="demo"></p> 
+	<?php
+	$paper=$_SESSION['op'];
+	$result=mysqli_query($con,"SELECT * FROM `question` WHERE `p_id`= '".$paper."'");
+	$_SESSION['q1']=1;
+?>
 <form method="post" action="checkP.php" name="myForm">
 <?php
 while($row=mysqli_fetch_array($result)){
@@ -158,3 +122,4 @@ $_SESSION['q1']=$_SESSION['q1']+1;
 	</div>
 </body>
 </html>
+
