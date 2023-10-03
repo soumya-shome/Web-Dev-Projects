@@ -1,5 +1,5 @@
 <?php
-	$db_name="s_santa";
+	$db_name="pokemon";
 	$db_user="root";
 	$db_password="";
 	$con = mysqli_connect('localhost',$db_user,$db_password);
