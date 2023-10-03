@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background: linear-gradient( #06F , #FFF);
+	background-size: cover;
+	width:100%;
+	height: 100vh;
+}
+
+div{
+	font-family:"Comic Sans MS", cursive;
+	font-size:16px
+}
+
+#logo{
+	postiton:relative;
+	float:left;
+	width:20%;
+	height:100px;
+	background-image:url(../Images/Tripcase_logo_retina.jpg);
+	background-size:cover;
+}
+
+#menu{
+	position:relative;
+	float:left;
+	width:80%;
+	height:100px;
+	background-color:#36C;
+}
+
+.menu-items{
+	padding-top:40px;
+	width:20%;
+	text-align:center;
+	float:left;
+	color:#CCC;
+	height:60px
+}
+
+.menu-items:hover{
+	background-color:#009;
+}
+	
+#gallery-h1{
+	font-family:"Comic Sans MS", cursive;
+	font-size:24px;
+	background-color:#039;
+	color:#FFF;
+	text-height:70px;
+	text-align:center;
+	text-transform:uppercase	
+}
+
+	

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+        function loadXMLDoc()
+        {
+	var a=parseInt(document.f1.a.value); 
+               var b=parseInt(document.f1.b.value);
+               var url="argument.php?a="+a+"&b="+b+"";
+            var u;
+            if(window.XMLHttpRequest)
+            {
+                u=new XMLHttpRequest();
+            }
+             else
+             {
+                 u=new ActiveXObject("Microsoft.XMLHTTP")
+				
+             }
+                u.onreadystatechange=function ()
+                {
+                    if(u.readyState==4 && u.status==200)
+                    {
+                        document.getElementById("c").innerHTML=u.responseText;
+                    }
+
+                }
+                u.open("GET",url,true);
+                u.send();
+        }
+        </script>
+    </head>
+    
+    
+<body>
+
+        <form name="f1">
+            <input type="text" id="a" name="a">
+                        <input type="text" id="b"  name="b">
+<button type="button" onclick="loadXMLDoc()">Submit</button>      
+        </form>
+<H2>Addition of two number</H2>               
+        <div id="c"> </div>
+    </body>
+</html>
