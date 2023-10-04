@@ -1,18 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <?php
-require "header bar2.php";
+	require("connectDB.php");
+	session_start();
 ?>
-<div>
+<body>
+	
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myAHome">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Centre</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myAHome">
+			
+			<ul class="nav navbar-nav">		
+				
+				<li ><a href="stuHome.php">Home</a></li>
+				<li ><a href="">Profile</a></li>
+				<li class="dropdown active" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Exam Center<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Exams</li>
+						<li ><a href="">Online Exam</a></li>
+						<li class="active"><a href="applyE.php">Apply for Exam</a></li>
+						<li ><a href="">Admit Card</a></li>
+						<li ><a href="">Result</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Attendance Register<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Register</li>
+						<li ><a href="#">-</a></li>
+						
+						<li class="divider"></li>
+						<li class="dropdown-header">Fees</li>
+						<li ><a href="#">View</a></li>
+						<li ><a href="#">Submit</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="logOut.php"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li></li>
+			</ul>
+		<ul class="nav navbar-nav navbar-right ">
+				<li><a href="#">Welcome  <?php echo $_SESSION['id'] ?></a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 <?php 
-	$r2=mysqli_query($con,"SELECT * FROM `st_course` WHERE `st_id`='".$_SESSION['id']."' AND `status`='EXAM' ");
+	
+	$r=mysqli_query($con,"SELECT * FROM `course`;");
+	$r2=mysqli_query($con,"SELECT `c_id`,`c_name` FROM `s_course` WHERE `st_id`='".$_SESSION['id']."' AND `status`='Active' ");
 	if(mysqli_num_rows($r2)>0){
 		$row=mysqli_fetch_array($r2);
-		$r=mysqli_query($con,"SELECT * FROM `course` WHERE `c_id`='".$row[1]."'");
-		$row2=mysqli_fetch_array($r);
 		echo "Exam ID : ".$_SESSION['eId']."<br>";
-		echo "Course ID : ".$row2[0]."<br>";				
-		echo "Course Name : ".$row2[1]."<br>";				
-		$s="INSERT INTO `exam`(`e_id`, `e_date`, `e_slot`, `st_id`, `c_id`, `p_type`, `p_set`, `activation code`, `status`) VALUES ('".$_SESSION['eId']."','','','".$_SESSION['id']."','".$row2[0]."','','','','APPLIED')";
-		//echo $s;
+		echo "Course ID : ".$row[0]."<br>";				
+		echo "Course Name : ".$row[1]."<br>";				
+		$r3=mysqli_query($con,"SELECT `c_id` FROM `course` WHERE `name`='".$row[1]."'");
+		$row2=mysqli_fetch_array($r3);
+		$s="INSERT INTO `exam`(`Exam Code`, `Exam Date`, `Exam Slot`, `Machine No.`, `Student Id`, `Course Id`, `Paper Code`, `Activation No.`, `Exam Status`) VALUES ('".$_SESSION['eId']."','','','','".$_SESSION['id']."','".$row2[0]."','','','Applied');";
 		$r4=mysqli_query($con,$s);
 		if($r4)
 			echo "<h3>Successfully Applied</h1>";
@@ -20,10 +79,10 @@ require "header bar2.php";
 			echo "<h3>Failed Try Again</h3>";
 	}
 	else{
-		echo "<h3>You Dont have any active course</h3>";
+		echo "<h3>Your Course is already Completed</h3>";
 	}
 	?>
-
+<div>
 	
 	
 	</div>

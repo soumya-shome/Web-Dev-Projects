@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Untitled Document</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -23,8 +23,8 @@
 		<div class="collapse navbar-collapse" id="myAHome"> 
 			<ul class="nav navbar-nav">
 				
-				<li class="active"><a href="index.php">Home</a></li>
-			
+				<li class="active"><a href="Home.php">Home</a></li>
+				<li class="#"><a href="sche.php">Check Attendance</a></li>
 				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -50,17 +50,19 @@
 	require("connectDB.php");
 	if(isset($_REQUEST["b1"])){
 		$stid=$_REQUEST["t1"];
+		
 		$r=mysqli_query($con,"SELECT * FROM `student` WHERE `s_id`='".$stid."'");
 		if($count=mysqli_num_rows($r)>0)
 		{
 			$row=mysqli_fetch_array($r);	
-			if($row[0]==$stid && $row[1]!=' ')	
+			if($row[0]==$stid)	
 			{
 				$pass=$_POST["t2"];
 				$pass2=$_POST["t3"];
+				$ques=$_POST["t4"];
+				$ans=$_POST["t5"];
 				if($pass==$pass2){	
-					$q="INSERT INTO `profile`(`st_id`, `password`, `type`,`email`) VALUES ('".$stid."','".$pass."','STUDENT','".$row[4]."')";
-					//echo "<br>".$q."<br>";
+					$q="INSERT INTO `profile`(`user_id`, `password`, `type`,`hint_q`, `hint_a`) VALUES ('".$stid."','".$pass."','STUDENT','".$ques."','".$ans."')";
 					$r=mysqli_query($con,$q);
 					if(!$r)
 					{
@@ -208,6 +210,18 @@
 						<label class="control-label col-sm-3" for="pwd2">Confirm Password</label>     
 						<div class="col-sm-9">       
 							<input type="text" class="form-control" id="pwd2" name="t3" placeholder="Enter Password" required>     
+						</div>   
+					</div>
+					<div class="form-group">     
+						<label class="control-label col-sm-3" for="hq">Hint Question</label>     
+						<div class="col-sm-9">       
+							<input type="text" class="form-control" id="hq" name="t4" placeholder="Enter Password" required>     
+						</div>   
+					</div>
+					<div class="form-group">     
+						<label class="control-label col-sm-3" for="ha">Answer</label>     
+						<div class="col-sm-9">       
+							<input type="text" class="form-control" id="ha" name="t5" placeholder="Enter Password" required>     
 						</div>   
 					</div>
 					<div class="form-group">      

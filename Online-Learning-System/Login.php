@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Untitled Document</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -10,8 +10,7 @@
 </head>
 <?php
 	require("connectDB.php");
-	
-	?>
+?>
 <body>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -25,7 +24,10 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myAHome"> 
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.php">Home</a></li>			
+				
+				<li class="active"><a href="adminHome.php">Home</a></li>
+				<li class="#"><a href="sche.php">Check Attendance</a></li>
+				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				
@@ -50,23 +52,21 @@
 	if(isset($_REQUEST["b1"])){
 		$login=$_REQUEST["t1"];
 		$pass=$_REQUEST["p1"];
-		$r=mysqli_query($con,"SELECT * FROM `profile` WHERE `st_id`='".$login."'");
-		if($count=mysqli_num_rows($r)>0)
+		$r=mysqli_query($con,"SELECT * FROM `profile` WHERE `USER_ID`='".$login."'");
+		if($count=mysqli_num_rows($r) >0)
 		{
 			$row=mysqli_fetch_array($r);	
 			if($pass==$row[1]){
 				if($row[2]=="STUDENT")
 				{
 					session_start();
-					$r2=mysqli_fetch_array(mysqli_query($con,"SELECT student.f_name FROM student,profile WHERE student.s_id=profile.st_id AND profile.st_id='".$login."'"));
-					$_SESSION['id']=$login;
-					$_SESSION['name']=$r2[0];
+					$_SESSION['id']=$row[0];
 					header("Refresh:0,URL=stuHome.php");	
 				}
 				else
 				{
 					session_start();
-					$_SESSION['id']=$row[2];
+					$_SESSION['id']=$row[0];
 					header("Refresh:0,URL=adminHome.php");
 				}
 			}
@@ -104,16 +104,16 @@
 				</ul>
 		<div class="carousel-inner" >
 			<div class="item active">
-			<img src="Images/img1.jpg" class="img-responsive">
+			<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 		<div class="item ">
 				<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 		<div class="item ">
-				<img src="Images/img3.jpg" class="img-responsive">
+				<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 		<div class="item ">
-				<img src="Images/img4.jpg" class="img-responsive">
+				<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 	</div>
 		 <!-- Left and right controls -->   
@@ -196,6 +196,18 @@
 						<label class="control-label col-sm-3" for="pwd2">Confirm Password</label>     
 						<div class="col-sm-9">       
 							<input type="text" class="form-control" id="pwd2" name="t3" placeholder="Enter Password" required>     
+						</div>   
+					</div>
+					<div class="form-group">     
+						<label class="control-label col-sm-3" for="hq">Hint Question</label>     
+						<div class="col-sm-9">       
+							<input type="text" class="form-control" id="hq" name="t4" placeholder="Enter Password" required>     
+						</div>   
+					</div>
+					<div class="form-group">     
+						<label class="control-label col-sm-3" for="ha">Answer</label>     
+						<div class="col-sm-9">       
+							<input type="text" class="form-control" id="ha" name="t5" placeholder="Enter Password" required>     
 						</div>   
 					</div>
 					<div class="form-group">      

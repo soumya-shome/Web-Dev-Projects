@@ -2,31 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Untitled Document</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-	<?php
-	session_start();
-	session_destroy();
-	?>
-<!--<script>
-	function checkFirstVisit() {
-  if(document.cookie.indexOf('mycookie')==-1) {
-    // cookie doesn't exist, create it now
-    document.cookie = 'mycookie=1';
-  }
-  else {
-    // not first visit, so alert
-    alert('You refreshed!');
-	document.cookie='mycookie=-1';
-  }
-}
-	
-	</script>-->
-<body onload="checkFirstVisit()">
+
+<body>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -39,7 +22,10 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myAHome"> 
 			<ul class="nav navbar-nav">
+				
 				<li class="active"><a href="Home.php">Home</a></li>
+				<li class="#"><a href="sche.php">Check Attendance</a></li>
+				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				
@@ -60,7 +46,8 @@
 <div class="row" style="padding-left: 8px">
 		<div class="col-md-8">
 	<?php 
-	session_abort();
+	session_start();
+	$_SESSION['id']="";
 	?>
 	You Have Logged Out Successfully !!
 	
@@ -88,16 +75,16 @@
 				</ul>
 		<div class="carousel-inner" >
 			<div class="item active">
-			<img src="Images/img1.jpg" class="img-responsive">
+			<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 		<div class="item ">
 				<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 		<div class="item ">
-				<img src="Images/img3.jpg" class="img-responsive">
+				<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 		<div class="item ">
-				<img src="Images/img4.jpg" class="img-responsive">
+				<img src="Images/img2.jpg" class="img-responsive">
 		</div>
 	</div>
 		 <!-- Left and right controls -->   
@@ -154,6 +141,7 @@
 		</div>
 	</div>
 </div>
+	
 <div id="mymodal2" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -180,6 +168,18 @@
 						<label class="control-label col-sm-3" for="pwd2">Confirm Password</label>     
 						<div class="col-sm-9">       
 							<input type="text" class="form-control" id="pwd2" name="t3" placeholder="Enter Password" required>     
+						</div>   
+					</div>
+					<div class="form-group">     
+						<label class="control-label col-sm-3" for="hq">Hint Question</label>     
+						<div class="col-sm-9">       
+							<input type="text" class="form-control" id="hq" name="t4" placeholder="Enter Password" required>     
+						</div>   
+					</div>
+					<div class="form-group">     
+						<label class="control-label col-sm-3" for="ha">Answer</label>     
+						<div class="col-sm-9">       
+							<input type="text" class="form-control" id="ha" name="t5" placeholder="Enter Password" required>     
 						</div>   
 					</div>
 					<div class="form-group">      

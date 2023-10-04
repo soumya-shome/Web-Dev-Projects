@@ -4,5 +4,5 @@
 	if(!$con){
 		die ("Couldn't connect ".mysql_error());
 	}
-	mysqli_select_db($con,"online_exam_001");
+	mysqli_select_db($con,"edu_centre");
 ?>
